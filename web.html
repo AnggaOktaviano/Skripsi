@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .login-container, .dashboard-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            width: 90%; /* Lebar responsif */
+            max-width: 400px; /* Lebar maksimum */
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            padding: 12px 20px; /* Padding yang lebih besar */
+            border: none;
+            background-color: #28a745;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+            width: 100%; /* Tombol lebar penuh */
+            font-size: 16px; /* Ukuran font lebih besar */
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .dashboard-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .dashboard-text {
+            text-align: center;
+            font-size: 16px;
+            color: #555;
+        }
+        .login-container img, .dashboard-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container" id="login-container">
+    <img src="pangan.jpeg" alt="Gambar Login"> <!-- Ganti URL ini dengan gambar yang diinginkan -->
+    <h2>Login</h2>
+    <form id="login-form">
+        <label for="username">Username:</label><br>
+        <input type="text" id="username" name="username" required style="width: 100%; padding: 10px; margin: 10px 0;"><br>
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password" required style="width: 100%; padding: 10px; margin: 10px 0;"><br>
+        <button type="submit">Login</button>
+    </form>
+</div>
+
+<div class="dashboard-container hidden" id="dashboard-container">
+  
+    <p class="dashboard-title">DASHBOARD HARGA PANGAN PULAU JAWA</p>
+    <img src="POWERBI.png" alt="Gambar Dashboard"> <!-- Ganti URL ini dengan gambar yang diinginkan -->
+    <button id="logout-btn">Logout</button>
+</div>
+
+<script>
+    // Validasi username dan password sederhana
+    const correctUsername = 'admin';
+    const correctPassword = 'admin123';
+
+    const loginForm = document.getElementById('login-form');
+    const loginContainer = document.getElementById('login-container');
+    const dashboardContainer = document.getElementById('dashboard-container');
+    const logoutBtn = document.getElementById('logout-btn');
+
+    loginForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        if (username === correctUsername && password === correctPassword) {
+            loginContainer.classList.add('hidden');
+            dashboardContainer.classList.remove('hidden');
+        } else {
+            alert('Username atau password salah');
+        }
+    });
+
+    logoutBtn.addEventListener('click', function() {
+        dashboardContainer.classList.add('hidden');
+        loginContainer.classList.remove('hidden');
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    });
+</script>
+
+</body>
+</html>
